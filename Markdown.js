@@ -143,8 +143,8 @@ class Markdown extends Component {
   }
 }
 
-Markdown.getDefaultProps() {
-  return {
-    style: styles
-  }
+Markdown.defaultProps = {
+  style: styles
 }
+
+export default Markdown
