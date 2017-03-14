@@ -75,7 +75,7 @@ module.exports = function(styles) {
     },
     hr: {
       react: function(node, output, state) {
-        return React.createElement(View, { key: state.key, style: styles.hr });
+        return React.createElement(Text, { key: state.key, style: styles.hr });
       }
     },
     image: {
@@ -116,13 +116,13 @@ module.exports = function(styles) {
           else {
             bullet = React.createElement(Text, { style: styles.listItemBullet }, '\u2022 ');
           }
-          return React.createElement(View, {
+          return React.createElement(Text, {
             key: i,
             style: styles.listItem
           }, [bullet, output(item, state)]);
         });
 
-        return React.createElement(View, { key: state.key, style: styles.list }, items);
+        return React.createElement(Text, { key: state.key, style: styles.list }, items);
       }
     },
     mailto: {
@@ -145,7 +145,7 @@ module.exports = function(styles) {
     },
     paragraph: {
       react: function(node, output, state) {
-        return React.createElement(View, {
+        return React.createElement(Text, {
           key: state.key,
           style: styles.paragraph
         }, output(node.content, state));
@@ -168,11 +168,11 @@ module.exports = function(styles) {
           }, output(content, state));
         });
 
-        var header = React.createElement(View, { style: styles.tableHeader }, headers);
+        var header = React.createElement(Text, { style: styles.tableHeader }, headers);
 
         var rows = _.map(node.cells, function(row, r) {
           var cells = _.map(row, function(content, c) {
-            return React.createElement(View, {
+            return React.createElement(Text, {
               key: c,
               style: styles.tableRowCell
             }, output(content, state));
@@ -181,10 +181,10 @@ module.exports = function(styles) {
           if (node.cells.length - 1 == r) {
             rowStyles.push(styles.tableRowLast);
           }
-          return React.createElement(View, { key: r, style: rowStyles }, cells);
+          return React.createElement(Text, { key: r, style: rowStyles }, cells);
         });
 
-        return React.createElement(View, { key: state.key, style: styles.table }, [ header, rows ]);
+        return React.createElement(Text, { key: state.key, style: styles.table }, [ header, rows ]);
       }
     },
     text: {
@@ -210,7 +210,7 @@ module.exports = function(styles) {
     u: {
       react: function(node, output, state) {
         state.withinText = true;
-        return React.createElement(View, {
+        return React.createElement(Text, {
           key: state.key,
           style: styles.u
         }, output(node.content, state));
