@@ -1,7 +1,7 @@
-import React from 'react-native'
+import React, { Component } from 'react'
 var {
   View
-} = React;
+} = require('react-native')
 var _ = require('lodash');
 var SimpleMarkdown = require('simple-markdown');
 
@@ -116,15 +116,16 @@ var styles = {
 };
 
 
-var Markdown = React.createClass({
+export default class Markdown extends Component {
+  constructor(props) {
+    super(props)
+  }
 
-  getDefaultProps: function() {
-    return {
+  static getDefaultProps = {
       style: styles
-    };
-  },
+  }
 
-  componentWillMount: function() {
+  componentWillMount() {
     var mergedStyles = _.merge({}, styles, this.props.style);
     var rules = require('./rules')(mergedStyles);
     rules = _.merge({}, SimpleMarkdown.defaultRules, rules);
@@ -135,15 +136,13 @@ var Markdown = React.createClass({
       return parser(blockSource, {inline: false});
     };
     this.renderer = SimpleMarkdown.reactFor(SimpleMarkdown.ruleOutput(rules, 'react'));
-  },
+  }
 
-  render: function() {
+  render() {
 
     var child = _.isArray(this.props.children)
       ? this.props.children.join('') : this.props.children;
     var tree = this.parse(child);
     return <View style={[styles.view, this.props.style.view]}>{this.renderer(tree)}</View>;
   }
-});
-
-module.exports = Markdown;
+}

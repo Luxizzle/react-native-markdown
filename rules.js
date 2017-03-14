@@ -1,9 +1,9 @@
-import React from 'react-native'
+import React from 'react'
 var {
   Image,
   Text,
   View,
-} = React;
+} = require('react-native')
 import AutoImage from './AutoImage'
 var SimpleMarkdown = require('simple-markdown');
 var _ = require('lodash');
