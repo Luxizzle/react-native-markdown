@@ -116,13 +116,9 @@ var styles = {
 };
 
 
-export default class Markdown extends Component {
+class Markdown extends Component {
   constructor(props) {
     super(props)
-  }
-
-  static getDefaultProps = {
-      style: styles
   }
 
   componentWillMount() {
@@ -144,5 +140,11 @@ export default class Markdown extends Component {
       ? this.props.children.join('') : this.props.children;
     var tree = this.parse(child);
     return <View style={[styles.view, this.props.style.view]}>{this.renderer(tree)}</View>;
+  }
+}
+
+Markdown.getDefaultProps() {
+  return {
+    style: styles
   }
 }
