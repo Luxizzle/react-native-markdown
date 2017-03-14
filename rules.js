@@ -1,9 +1,10 @@
-var React = require('react-native');
+import React from 'react-native'
 var {
   Image,
   Text,
   View,
 } = React;
+import AutoImage from './AutoImage'
 var SimpleMarkdown = require('simple-markdown');
 var _ = require('lodash');
 
@@ -79,9 +80,9 @@ module.exports = function(styles) {
     },
     image: {
       react: function(node, output, state) {
-        return React.createElement(Image, {
+        return React.createElement(AutoImage, {
           key: state.key,
-          source: { uri: node.target },
+          source: node.target,
           style: styles.image
         });
       }
